@@ -1,0 +1,44 @@
+
+docker-compose up -d
+
+docker-compose down
+
+
+docker images
+
+docker tag <image_id> ashishrajs/azure-vote-front:v1
+
+
+docker push ashishrajs/azure-vote-front
+
+
+--------------------------------------------------------
+az group create --name azs-aks-rg --location eastus
+
+az aks create \
+    --resource-group azs-aks-rg \
+    --name azsAKSCluster \
+    --node-count 1 \
+    --enable-addons monitoring \
+    --generate-ssh-keys
+
+---------------------------------------------------
+az aks create `
+    --resource-group azs-aks-rg `
+    --name azsAKSCluster `
+    --node-count 1 `
+    --enable-addons monitoring
+-----------------------------------------------
+	
+az aks install-cli
+
+az aks get-credentials --resource-group azs-aks-rg --name azsAKSCluster
+
+kubectl get nodes
+
+kubectl apply -f azure-vote.yaml
+
+kubectl get service azure-vote-front --watch
+
+kubectl config -h
+
