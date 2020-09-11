@@ -9,4 +9,4 @@
 - Go to individual module folder and read the instructions to complete the labs.
 
 ## Module 1 Azure Fundamentals
-Lab 1 : [Deploy Resources using Portal](Module 1 Introduction to Azure/LAB_03a-Manage_Azure_Resources_by_Using_the_Azure_Portal.md)
+Lab 1 : [Deploy Resources using Portal](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%201%20Introduction%20to%20Azure/LAB_03a-Manage_Azure_Resources_by_Using_the_Azure_Portal.md)
