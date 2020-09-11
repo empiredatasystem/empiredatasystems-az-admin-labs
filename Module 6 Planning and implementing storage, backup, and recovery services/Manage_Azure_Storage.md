@@ -1,6 +1,6 @@
 ---
 lab:
-    title: '- Manage Azure storage'
+    title: 'Manage Azure storage'
     module: 'Module - Azure Storage'
 ---
 
