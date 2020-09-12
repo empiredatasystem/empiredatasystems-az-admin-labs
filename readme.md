@@ -16,7 +16,6 @@
 ## Module 2 Implementing and managing Azure networking
 
 - Lab 1 : [Implement Virtual Networking](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%202%20Implementing%20and%20managing%20Azure%20networking/LAB_04-Implement_Virtual_Networking.md)
-
 - Lab 2 : [Implement Traffic Management](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%202%20Implementing%20and%20managing%20Azure%20networking/LAB_06-Implement_Network_Traffic_Management.md)
 
 ## Module 3 and 4 Implementing and managing virtual machines
