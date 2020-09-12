@@ -38,7 +38,7 @@ In this task, you will deploy four virtual machines into the same Azure region. 
 
     >**Note**: If this is the first time you are starting **Cloud Shell** and you are presented with the **You have no storage mounted** message, select the subscription you are using in this lab, and click **Create storage**. 
 
-1. In the toolbar of the Cloud Shell pane, click the **Upload/Download files** icon, in the drop-down menu, click **Upload** and upload the files **\\Allfiles\\Module_06\\az104-06-vms-template.json**, **\\Allfiles\\Labs\\06\\az104-06-vm-template.json**, and **\\Allfiles\\Labs\\06\\az104-06-vm-parameters.json** into the Cloud Shell home directory.
+1. In the toolbar of the Cloud Shell pane, click the **Upload/Download files** icon, in the drop-down menu, click **Upload** and upload the files **\\Allfiles\\Module_06\\az104-06-vms-template.json**, and **\\Allfiles\\Labs\\06\\az104-06-vm-parameters.json** into the Cloud Shell home directory.
 
 1. From the Cloud Shell pane, run the following to create the first resource group that will be hosting the first virtual network and the pair of virtual machines (replace the `[Azure_region]` placeholder with the name of an Azure region where you intend to deploy Azure virtual machines):
 
@@ -59,40 +59,6 @@ In this task, you will deploy four virtual machines into the same Azure region. 
       -AsJob
    ```
 
-1. From the Cloud Shell pane, run the following to create the second resource group that will be hosting the second virtual network and the third virtual machine
-
-   ```pwsh
-   $rgName = 'az104-06-rg2'
-
-   New-AzResourceGroup -Name $rgName -Location $location
-   ```
-1. From the Cloud Shell pane, run the following to create the second virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
-
-   ```pwsh
-   New-AzResourceGroupDeployment `
-      -ResourceGroupName $rgName `
-      -TemplateFile $HOME/az104-06-vm-template.json `
-      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
-      -nameSuffix 2 `
-      -AsJob
-   ```
-1. From the Cloud Shell pane, run the following to create the third resource group that will be hosting the third virtual network and the fourth virtual machine:
-
-   ```pwsh
-   $rgName = 'az104-06-rg3'
-
-   New-AzResourceGroup -Name $rgName -Location $location
-   ```
-1. From the Cloud Shell pane, run the following to create the third virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
-
-   ```pwsh
-   New-AzResourceGroupDeployment `
-      -ResourceGroupName $rgName `
-      -TemplateFile $HOME/az104-06-vm-template.json `
-      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
-      -nameSuffix 3 `
-      -AsJob
-   ```
     >**Note**: Wait for the deployments to complete before proceeding to the next task. This should take about 5 minutes.
 
     >**Note**: To verify the status of the deployments, you can examine the properties of the resource groups you created in this task.
