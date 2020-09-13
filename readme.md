@@ -11,7 +11,7 @@
 ## Module 1 Azure Fundamentals
 - Lab 1 : [Deploy Resources using Portal](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%201%20Introduction%20to%20Azure/LAB_03a-Manage_Azure_Resources_by_Using_the_Azure_Portal.md)
 - Lab 2 : [Manage Azure resources by Using ARM Templates](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%201%20Introduction%20to%20Azure/LAB_03b-Manage_Azure_Resources_by_Using_ARM_Templates.md)
-- Lab 3 : [Manage Azure resources by Using Azure PowerShell](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%201%20Introduction%20to%20Azure/LAB_03b-Manage_Azure_Resources_by_Using_ARM_Templates.md)
+- Lab 3 : [Manage Azure resources by Using Azure PowerShell](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%201%20Introduction%20to%20Azure/LAB_03c-Manage_Azure_Resources_by_Using_Azure_PowerShell.md)
 
 ## Module 2 Implementing and managing Azure networking
 
