@@ -41,4 +41,4 @@
 
 - Lab 1 : [Manage Azure Active Directory Identities](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%209%20and%2010%20Implementing%20and%20Managing%20Azure%20Active%20Directory/Manage_Azure_AD_Identities.md)
 
-- Lab 2 : [Manage Subscriptions and RBAC](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%209%20and%2010%20Implementing%20and%20Managing%20Azure%20Active%20Directory/Manage_Azure_AD_Identities.md)
+- Lab 2 : [Manage Subscriptions and RBAC](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%209%20and%2010%20Implementing%20and%20Managing%20Azure%20Active%20Directory/Manage_Subscriptions_and_RBAC.md)
