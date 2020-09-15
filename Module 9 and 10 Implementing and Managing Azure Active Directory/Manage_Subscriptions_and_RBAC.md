@@ -1,7 +1,7 @@
 ---
 lab:
-    title: '02a - Manage Subscriptions and RBAC'
-    module: 'Module 02 - Governance and Compliance'
+    title: 'Manage Subscriptions and RBAC'
+    module: 'Governance and Compliance'
 ---
 
 # Lab 02a - Manage Subscriptions and RBAC
