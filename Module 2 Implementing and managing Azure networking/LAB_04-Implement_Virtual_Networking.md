@@ -194,7 +194,7 @@ In this task, you will configure network security groups in order to allow for r
 
 1. When prompted, sign in by using the **Student** username and **Pa55w.rd1234** password.
 
-    >**Note**: Leave the Remote Desktop session open. You will need it in the next task.
+    >**Note**: You are able to login to VM now.
 
 
 #### Clean up resources
