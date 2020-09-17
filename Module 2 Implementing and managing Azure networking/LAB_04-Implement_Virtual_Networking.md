@@ -20,8 +20,7 @@ In this lab, you will:
 + Task 2: Deploy virtual machines into the virtual network
 + Task 3: Configure private and public IP addresses of Azure VMs
 + Task 4: Configure network security groups
-+ Task 5: Configure Azure DNS for internal name resolution
-+ Task 6: Configure Azure DNS for external name resolution
+
 
 ## Estimated timing: 40 minutes
 
@@ -197,115 +196,6 @@ In this task, you will configure network security groups in order to allow for r
 
     >**Note**: Leave the Remote Desktop session open. You will need it in the next task.
 
-#### Task 5: Configure Azure DNS for internal name resolution
-
-In this task, you will configure DNS name resolution within a virtual network by using Azure private DNS zones.
-
-1. In the Azure portal, search for and select **Private DNS zones** and, on the **Private DNS zones** blade, click **+ Add**.
-
-1. Create a private DNS zone with the following settings (leave others with their default values):
-
-    | Setting | Value |
-    | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Resource Group | **az104-04-rg1** |
-    | Name | **contoso.org** |
-
-    >**Note**: Wait for the private DNS zone to be created. This should take about 2 minutes.
-
-1. Click **Go to resource** to open the **contoso.org** DNS private zone blade. 
-
-1. On the **contoso.org** private DNS zone blade, in the **Settings** section, click **Virtual network links**
-
-1. Add a virtual network link with the following settings (leave others with their default values):
-
-    | Setting | Value |
-    | --- | --- |
-    | Link name | **az104-04-vnet1-link** |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Virtual network | **az104-04-vnet1** |
-    | Enable auto registration | enabled |
-
-    >**Note:** Wait for the virtual network link to be created. This should take less than 1 minute.
-
-1. On the **contoso.org** private DNS zone blade, in the sidebar, click **Overview**
-
-1. Verify that the DNS records for **az104-04-vm0** and **az104-04-vm1** appear in the list of record sets as **Auto registered**.
-
-    >**Note:** You might need to wait a few minutes and refresh the page if the record sets are not listed.
-
-1. Switch to the Remote Desktop session to **az104-04-vm0**, right-click the **Start** button and, in the right-click menu, click **Windows PowerShell (Admin)**.
-
-1. In the Windows PowerShell console window, run the following to test internal name resolution of the **az104-04-vm1** DNS record set in the newly created private DNS zone:
-
-   ```pwsh
-   nslookup az104-04-vm1.contoso.org
-   ```
-1. Verify that the output of the command includes the private IP address of **az104-04-vm1** (**10.40.1.4**).
-
-#### Task 6: Configure Azure DNS for external name resolution
-
-In this task, you will configure external DNS name resolution by using Azure public DNS zones.
-
-1. In the web browser, open a new tab and navigate to https://www.godaddy.com/domains/domain-name-search.
-
-1. Use the domain name search to identify a domain name which is not in use. 
-
-1. In the Azure portal, search for and select **DNS zones** and, on the **DNS zones** blade, click **+ Add**.
-
-1. Create a DNS zone with the following settings (leave others with their default values):
-
-    | Setting | Value |
-    | --- | --- |
-    | Subscription | the name of the Azure subscription you are using in this lab |
-    | Resource Group | **az104-04-rg1** |
-    | Name | the DNS domain name you identified earlier in this task |
-
-    >**Note**: Wait for the DNS zone to be created. This should take about 2 minutes. 
-
-1. Click **Go to resource** to open the blade of the newly created DNS zone.
-
-1. On the DNS zone blade, click **+ Record set**.
-
-1. Add a record set with the following settings (leave others with their default values):
-
-    | Setting | Value |
-    | --- | --- |
-    | Name | **az104-04-vm0** |
-    | Type | **A** |
-    | Alias record set | **No** |
-    | TTL | **1** |
-    | TTL unit | **Hours** |
-    | IP address | the public IP address of **az104-04-vm0** which you identified in the third exercise of this lab |
-
-1. Add a record set with the following settings (leave others with their default values):
-
-    | Setting | Value |
-    | --- | --- |
-    | Name | **az104-04-vm1** |
-    | Type | **A** |
-    | Alias record set | **No** |
-    | TTL | **1** |
-    | TTL unit | **Hours** |
-    | IP address | the public IP address of **az104-04-vm1** which you identified in the third exercise of this lab |
-
-1. On the DNS zone blade, note the name of the **Name server 1** entry.
-
-1. In the Azure portal, open the **PowerShell** session in **Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
-
-1. From the Cloud Shell pane, run the following to test external name resolution of the **az104-04-vm0** DNS record set in the newly created DNS zone (replace the placeholder `[Name server 1]` including the [] brackets, with the name of **Name server 1** you noted earlier in this task and the `[domain name] placeholder with the name of the DNS domain you created earlier in this task):
-
-   ```pwsh
-   nslookup az104-04-vm0.[domain name] [Name server 1]
-   ```
-1. Verify that the output of the command includes the public IP address of **az104-04-vm0**.
-
-1. From the Cloud Shell pane, run the following to test external name resolution of the **az104-04-vm1** DNS record set in the the newly created DNS zone (replace the placeholder `[Name server 1]` with the name of **Name server 1** you noted earlier in this task and the `[domain name] placeholder with the name of the DNS domain you created earlier in this task):
-
-   ```pwsh
-   nslookup az104-04-vm1.[domain name] [Name server 1]
-   ```
-1. Verify that the output of the command includes the public IP address of **az104-04-vm1**.
 
 #### Clean up resources
 
@@ -335,5 +225,3 @@ In this lab, you have:
 - Deployed virtual machines into the virtual network
 - Configured private and public IP addresses of Azure VMs
 - Configured network security groups
-- Configured Azure DNS for internal name resolution
-- Configured Azure DNS for external name resolution
