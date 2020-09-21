@@ -145,7 +145,7 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
     > **Note**: You might need to refresh the browser window or open it again by using InPrivate mode.
 
-#### Task 6: Implement Azure Application Gateway
+#### Task 2: Implement Azure Application Gateway
 
 In this task, you will implement an Azure Application Gateway in front of the two Azure virtual machines in the spoke virtual networks.
 
@@ -281,5 +281,5 @@ In this task, you will implement an Azure Application Gateway in front of the tw
 In this lab, you have:
 
 - Provisioned the lab environment
-+ Task 5: Implement Azure Load Balancer
-+ Task 6: Implement Azure Application Gateway
++ Task 1: Implement Azure Load Balancer
++ Task 2: Implement Azure Application Gateway
