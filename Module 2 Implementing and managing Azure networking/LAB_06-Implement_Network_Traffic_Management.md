@@ -149,6 +149,22 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
 In this task, you will implement an Azure Application Gateway in front of the two Azure virtual machines in the spoke virtual networks.
 
+1. In the Azure portal, open the **Azure Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
+
+1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**. 
+
+    >**Note**: If this is the first time you are starting **Cloud Shell** and you are presented with the **You have no storage mounted** message, select the subscription you are using in this lab, and click **Create storage**. 
+
+1. In the toolbar of the Cloud Shell pane, click the **Upload/Download files** icon, in the drop-down menu, click **Upload** and upload the files **\\Allfiles\\Labs\\06\\az104-06-vm-template.json** into the Cloud Shell home directory.
+
+1. From the Cloud Shell pane, run the following to create the second resource group that will be hosting the second virtual network and the third virtual machine
+
+   ```pwsh
+   $rgName = 'az104-06-rg2'
+
+   New-AzResourceGroup -Name $rgName -Location $location
+   ```
+
 1. From the Cloud Shell pane, run the following to create the second virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
 
    ```pwsh
