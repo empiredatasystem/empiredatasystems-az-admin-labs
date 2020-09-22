@@ -146,7 +146,14 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
     > **Note**: You might need to refresh the browser window or open it again by using InPrivate mode.
 
-#### Vnet Peering Prereq
+
+
+#### Task 2: Configure the hub and spoke network topology
+
+In this task, you will configure local peering between the virtual networks you deployed in the previous tasks in order to create a hub and spoke network topology.
+
+
+##### Vnet Peering Prereq
 1. In the Azure portal, open the **Azure Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
 
 1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**. 
@@ -196,9 +203,7 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
 1. Close the Cloud Shell pane.
 
-#### Task 2: Configure the hub and spoke network topology
-
-In this task, you will configure local peering between the virtual networks you deployed in the previous tasks in order to create a hub and spoke network topology.
+#### Configure Virtual Network Peering
 
 1. In the Azure portal, search for and select **Virtual networks**.
 
@@ -253,9 +258,9 @@ In this task, you will configure local peering between the virtual networks you 
     >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
 
 
-#### Task 2: Test transitivity of virtual network peering
+#### Task 2: Test virtual network peering
 
-In this task, you will test transitivity of virtual network peering by using Network Watcher.
+In this task, you will test virtual network peering by using Network Watcher.
 
 1. In the Azure portal, search for and select **Network Watcher**.
 
