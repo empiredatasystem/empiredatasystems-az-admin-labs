@@ -149,6 +149,39 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
 In this task, you will implement an Azure Application Gateway in front of the two Azure virtual machines in the spoke virtual networks.
 
+1. From the Cloud Shell pane, run the following to create the second virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
+
+   ```pwsh
+   New-AzResourceGroupDeployment `
+      -ResourceGroupName $rgName `
+      -TemplateFile $HOME/az104-06-vm-template.json `
+      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
+      -nameSuffix 2 `
+      -AsJob
+   ```
+1. From the Cloud Shell pane, run the following to create the third resource group that will be hosting the third virtual network and the fourth virtual machine:
+
+   ```pwsh
+   $rgName = 'az104-06-rg3'
+
+   New-AzResourceGroup -Name $rgName -Location $location
+   ```
+1. From the Cloud Shell pane, run the following to create the third virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
+
+   ```pwsh
+   New-AzResourceGroupDeployment `
+      -ResourceGroupName $rgName `
+      -TemplateFile $HOME/az104-06-vm-template.json `
+      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
+      -nameSuffix 3 `
+      -AsJob
+   ```
+    >**Note**: Wait for the deployments to complete before proceeding to the next task. This should take about 5 minutes.
+
+    >**Note**: To verify the status of the deployments, you can examine the properties of the resource groups you created in this task.
+
+1. Close the Cloud Shell pane.
+
 1. In the Azure portal, search and select **Virtual networks**.
 
 1. On the **Virtual networks** blade, in the list of virtual networks, click **az104-06-vnet01**.
