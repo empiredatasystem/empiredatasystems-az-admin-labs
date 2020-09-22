@@ -18,6 +18,7 @@ You were tasked with testing managing network traffic targeting Azure virtual ma
 In this lab, you will:
 
 + Task 1: Implement Azure Load Balancer
++ Task 2: Implement Vnet Peering
 + Task 2: Implement Azure Application Gateway
 
 ## Estimated timing: 60 minutes
@@ -145,10 +146,63 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
     > **Note**: You might need to refresh the browser window or open it again by using InPrivate mode.
 
-#### Task 2: Implement Azure Application Gateway
+#### Task 2: Configure the hub and spoke network topology
 
-In this task, you will implement an Azure Application Gateway in front of the two Azure virtual machines in the spoke virtual networks.
+In this task, you will configure local peering between the virtual networks you deployed in the previous tasks in order to create a hub and spoke network topology.
 
+1. In the Azure portal, search for and select **Virtual networks**.
+
+1. Review the virtual networks you created in the previous task. 
+
+    >**Note**: The template you used for deployment of the three virtual networks ensures that the IP address ranges of the three virtual networks do not overlap.
+
+1. In the list of virtual networks, click **az104-06-vnet01**.
+
+1. On the **az104-06-vnet01** virtual network blade, in the **Settings** section, click **Peerings** and then click **+ Add**.
+
+1. Add a peering with the following settings (leave others with their default values):
+
+    | Setting | Value |
+    | --- | --- |
+    | Name of the peering from az104-06-vnet01 to remote virtual network | **az104-06-vnet01_to_az104-06-vnet2** |
+    | Virtual network deployment model | **Resource manager** |
+    | Subscription | the name of the Azure subscription you are using in this lab |
+    | Virtual network | **az104-06-vnet2 (az104-06-rg2)** |
+    | Name of the peering from az104-06-vnet2 to az104-06-vnet01 | **az104-06-vnet2_to_az104-06-vnet01** |
+    | Allow virtual network access from az104-06-vnet01 to az104-06-vnet2 | **Enabled** |
+    | Allow virtual network access from az104-06-vnet2 to az104-06-vnet01 | **Enabled** |
+    | Allow forwarded traffic from az104-06-vnet2 to az104-06-vnet01 | **Disabled** |
+    | Allow forwarded traffic from az104-06-vnet01 to az104-06-vnet2 | **Enabled** |
+    | Allow gateway transit | **(Uncheck Box)** |
+
+    >**Note**: Wait for the operation to complete.
+
+    >**Note**: This step establishes two local peerings - one from az104-06-vnet01 to az104-06-vnet2 and the other from az104-06-vnet2 to az104-06-vnet01.
+
+    >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
+
+1. On the **az104-06-vnet01** virtual network blade, in the **Settings** section, click **Peerings** and then click **+ Add**.
+
+1. Add a peering with the following settings (leave others with their default values):
+
+    | Setting | Value |
+    | --- | --- |
+    | Name of the peering from az104-06-vnet01 to remote virtual network | **az104-06-vnet01_to_az104-06-vnet3** |
+    | Virtual network deployment model | **Resource manager** |
+    | Subscription | the name of the Azure subscription you are using in this lab |
+    | Virtual network | **az104-06-vnet3 (az104-06-rg3)** |
+    | Name of the peering from az104-06-vnet3 to az104-06-vnet01 | **az104-06-vnet3_to_az104-06-vnet01** |
+    | Allow virtual network access from az104-06-vnet01 to az104-06-vnet3 | **Enabled** |
+    | Allow virtual network access from az104-06-vnet3 to az104-06-vnet01 | **Enabled** |
+    | Allow forwarded traffic from az104-06-vnet3 to az104-06-vnet01 | **Disabled** |
+    | Allow forwarded traffic from az104-06-vnet01 to az104-06-vnet3 | **Enabled** |
+    | Allow gateway transit | **(Uncheck Box)** |
+
+    >**Note**: This step establishes two local peerings - one from az104-06-vnet01 to az104-06-vnet3 and the other from az104-06-vnet3 to az104-06-vnet01. This completes setting up the hub and spoke topology (with two spoke virtual networks).
+
+    >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
+
+# Vnet Peering Prereq
 1. In the Azure portal, open the **Azure Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
 
 1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**. 
@@ -197,6 +251,61 @@ In this task, you will implement an Azure Application Gateway in front of the tw
     >**Note**: To verify the status of the deployments, you can examine the properties of the resource groups you created in this task.
 
 1. Close the Cloud Shell pane.
+
+
+
+#### Task 2: Test transitivity of virtual network peering
+
+In this task, you will test transitivity of virtual network peering by using Network Watcher.
+
+1. In the Azure portal, search for and select **Network Watcher**.
+
+1. On the **Network Watcher** blade, expand the listing of Azure regions and verify that the service is enabled in the Azure into which you deployed resources in the first task of this lab.
+
+1. On the **Network Watcher** blade, navigate to the **Connection troubleshoot**.
+
+1. On the **Network Watcher - Connection troubleshoot** blade, initiate a check with the following settings (leave others with their default values):
+
+    | Setting | Value |
+    | --- | --- |
+    | Subscription | the name of the Azure subscription you are using in this lab |
+    | Resource group | **az104-06-rg1** |
+    | Source type | **Virtual machine** |
+    | Virtual machine | **az104-06-vm0** |
+    | Destination | **Specify manually** |
+    | URI, FQDN or IPv4 | **10.62.0.4** |
+    | Protocol | **TCP** |
+    | Destination Port | **3389** |
+
+    > **Note**: **10.62.0.4** represents the private IP address of **az104-06-vm2**
+
+1. Click **Check** and wait until results of the connectivity check are returned. Verify that the status is **Reachable**. Review the network path and note that the connection was direct, with no intermediate hops in between the VMs.
+
+    > **Note**: This is expected, since the hub virtual network is peered directly with the first spoke virtual network.
+
+    > **Note**: The initial check can take about 2 minutes because it requires installation of the Network Watcher Agent virtual machine extension on **az104-06-vm0**.
+
+1. On the **Network Watcher - Connection troubleshoot** blade, initiate a check with the following settings (leave others with their default values):
+
+    | Setting | Value |
+    | --- | --- |
+    | Subscription | the name of the Azure subscription you are using in this lab |
+    | Resource group | **az104-06-rg1** |
+    | Source type | **Virtual machine** |
+    | Virtual machine | **az104-06-vm0** |
+    | Destination | **Specify manually** |
+    | URI, FQDN or IPv4 | **10.63.0.4** |
+    | Protocol | **TCP** |
+    | Destination Port | **3389** |
+
+    > **Note**: **10.63.0.4** represents the private IP address of **az104-06-vm3**
+
+1. Click **Check** and wait until results of the connectivity check are returned. Verify that the status is **Reachable**. Review the network path and note that the connection was direct, with no intermediate hops in between the VMs.
+
+#### Task 3: Implement Azure Application Gateway
+
+In this task, you will implement an Azure Application Gateway in front of the two Azure virtual machines in the spoke virtual networks.
+
 
 1. In the Azure portal, search and select **Virtual networks**.
 
@@ -331,4 +440,5 @@ In this lab, you have:
 
 - Provisioned the lab environment
 + Task 1: Implement Azure Load Balancer
++ Task 2: Implement Vnet Peering
 + Task 2: Implement Azure Application Gateway
