@@ -146,6 +146,56 @@ In this task, you will implement an Azure Load Balancer in front of the two Azur
 
     > **Note**: You might need to refresh the browser window or open it again by using InPrivate mode.
 
+#### Vnet Peering Prereq
+1. In the Azure portal, open the **Azure Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
+
+1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**. 
+
+    >**Note**: If this is the first time you are starting **Cloud Shell** and you are presented with the **You have no storage mounted** message, select the subscription you are using in this lab, and click **Create storage**. 
+
+1. In the toolbar of the Cloud Shell pane, click the **Upload/Download files** icon, in the drop-down menu, click **Upload** and upload the files **\\Allfiles\\Labs\\06\\az104-06-vm-template.json** into the Cloud Shell home directory.
+
+1. From the Cloud Shell pane, run the following to create the second resource group that will be hosting the second virtual network and the third virtual machine
+
+   ```pwsh
+   $rgName = 'az104-06-rg2'
+
+   New-AzResourceGroup -Name $rgName -Location $location
+   ```
+
+1. From the Cloud Shell pane, run the following to create the second virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
+
+   ```pwsh
+   New-AzResourceGroupDeployment `
+      -ResourceGroupName $rgName `
+      -TemplateFile $HOME/az104-06-vm-template.json `
+      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
+      -nameSuffix 2 `
+      -AsJob
+   ```
+1. From the Cloud Shell pane, run the following to create the third resource group that will be hosting the third virtual network and the fourth virtual machine:
+
+   ```pwsh
+   $rgName = 'az104-06-rg3'
+
+   New-AzResourceGroup -Name $rgName -Location $location
+   ```
+1. From the Cloud Shell pane, run the following to create the third virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
+
+   ```pwsh
+   New-AzResourceGroupDeployment `
+      -ResourceGroupName $rgName `
+      -TemplateFile $HOME/az104-06-vm-template.json `
+      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
+      -nameSuffix 3 `
+      -AsJob
+   ```
+    >**Note**: Wait for the deployments to complete before proceeding to the next task. This should take about 5 minutes.
+
+    >**Note**: To verify the status of the deployments, you can examine the properties of the resource groups you created in this task.
+
+1. Close the Cloud Shell pane.
+
 #### Task 2: Configure the hub and spoke network topology
 
 In this task, you will configure local peering between the virtual networks you deployed in the previous tasks in order to create a hub and spoke network topology.
@@ -201,57 +251,6 @@ In this task, you will configure local peering between the virtual networks you 
     >**Note**: This step establishes two local peerings - one from az104-06-vnet01 to az104-06-vnet3 and the other from az104-06-vnet3 to az104-06-vnet01. This completes setting up the hub and spoke topology (with two spoke virtual networks).
 
     >**Note**: **Allow forwarded traffic** needs to be enabled in order to facilitate routing between spoke virtual networks, which you will implement later in this lab.
-
-# Vnet Peering Prereq
-1. In the Azure portal, open the **Azure Cloud Shell** by clicking on the icon in the top right of the Azure Portal.
-
-1. If prompted to select either **Bash** or **PowerShell**, select **PowerShell**. 
-
-    >**Note**: If this is the first time you are starting **Cloud Shell** and you are presented with the **You have no storage mounted** message, select the subscription you are using in this lab, and click **Create storage**. 
-
-1. In the toolbar of the Cloud Shell pane, click the **Upload/Download files** icon, in the drop-down menu, click **Upload** and upload the files **\\Allfiles\\Labs\\06\\az104-06-vm-template.json** into the Cloud Shell home directory.
-
-1. From the Cloud Shell pane, run the following to create the second resource group that will be hosting the second virtual network and the third virtual machine
-
-   ```pwsh
-   $rgName = 'az104-06-rg2'
-
-   New-AzResourceGroup -Name $rgName -Location $location
-   ```
-
-1. From the Cloud Shell pane, run the following to create the second virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
-
-   ```pwsh
-   New-AzResourceGroupDeployment `
-      -ResourceGroupName $rgName `
-      -TemplateFile $HOME/az104-06-vm-template.json `
-      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
-      -nameSuffix 2 `
-      -AsJob
-   ```
-1. From the Cloud Shell pane, run the following to create the third resource group that will be hosting the third virtual network and the fourth virtual machine:
-
-   ```pwsh
-   $rgName = 'az104-06-rg3'
-
-   New-AzResourceGroup -Name $rgName -Location $location
-   ```
-1. From the Cloud Shell pane, run the following to create the third virtual network and deploy a virtual machine into it by using the template and parameter files you uploaded:
-
-   ```pwsh
-   New-AzResourceGroupDeployment `
-      -ResourceGroupName $rgName `
-      -TemplateFile $HOME/az104-06-vm-template.json `
-      -TemplateParameterFile $HOME/az104-06-vm-parameters.json `
-      -nameSuffix 3 `
-      -AsJob
-   ```
-    >**Note**: Wait for the deployments to complete before proceeding to the next task. This should take about 5 minutes.
-
-    >**Note**: To verify the status of the deployments, you can examine the properties of the resource groups you created in this task.
-
-1. Close the Cloud Shell pane.
-
 
 
 #### Task 2: Test transitivity of virtual network peering
