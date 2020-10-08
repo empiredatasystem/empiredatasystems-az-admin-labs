@@ -26,6 +26,8 @@
 
 - Lab 1 : [Implement Web Apps](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%2C%208%20and%2012%20Implementing%20Azure%20App%20services%2C%20containers%20and%20AKS/Implement_Web_Apps.md)
 
+- Lab 2 : [Implement Docker and AKS](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%2C%208%20and%2012%20Implementing%20Azure%20App%20services%2C%20containers%20and%20AKS/Impliment_Docker_AKS.md)
+
 ## Module 6 Planning and implementing storage, backup, and recovery services
 
 - Lab 1 : [Manage Azure storage](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%206%20Planning%20and%20implementing%20storage%2C%20backup%2C%20and%20recovery%20services/Manage_Azure_Storage.md)
