@@ -58,4 +58,40 @@ In this lab, you will:
 
 #### Task 3: Create an Azure Kubernetes Cluster (AKS)
 
-1.
+1. Now we will create an Azure Kubernetes Cluster(AKS) cluster using command `az aks create
+    --resource-group az104-aks-demo-rg
+    --name myAKSCluster
+    --node-count 2
+    --generate-ssh-keys
+    --attach-acr <acrName>`
+1. Install kubectl using command `az aks install-cli`
+1. Connect to AKS Cluster using command `az aks get-credentials --resource-group az104-aks-demo-rg --name myAKSCluster`
+1. After connecting to ALS cluster, run command `kubectl get nodes` to list all the nodes of the AKS cluster.
+
+#### Task 4: Run your containerized application on AKS
+
+1. Get the ACR login server name using command `az acr list --resource-group az104-aks-demo-rg --query "[].{acrLoginServer:loginServer}" --output table`
+1. Oped the file `azure-vote-all-in-one-redis.yaml` in a code editor such Visual Studio Code or notepad.
+1. Replace microsoft with your ACR login server name.
+
+```yaml
+containers:
+- name: azure-vote-front
+  image: mcr.microsoft.com/azuredocs/azure-vote-front:v1
+```
+
+```yaml
+containers:
+- name: azure-vote-front
+  image: <acrName>.azurecr.io/azure-vote-front:v1
+```
+1. After making changes run command `kubectl apply -f azure-vote-all-in-one-redis.yaml` to deploy the application to AKS
+
+1. To monitor the progress, run command ` kubectl get service azure-vote-front --watch`
+1. Initially the EXTERNAL-IP for th eazure-vote-front service is pending.
+
+1. When the EXTERNAL-IP address changes from pending to an actual IP address, CTRL-C to stop kubetcl watch process.
+1. To open the application in a browser, copy EXTERNAL-IP and open it in a browser.
+
+#### Task 5 : Cleanup
+1. To delete the resources deployed in Azure during this lab run command `az group delete --name az104-aks-demo-rg --yes --no-wait`
