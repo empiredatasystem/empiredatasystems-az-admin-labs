@@ -28,9 +28,7 @@ In this lab, you will:
 
 #### Task 1: Create container image
 
-1. Clone the code repository using command `git clone git clone https://github.com/Azure-Samples/azure-voting-app-redis.git`
-
-1. Change directory using ` cd azure-voting-app-redis`
+1. Change directory using ` cd azure-vote`
 
 1. Run `docker-compose up -d` to create the container image, download the Redis image and start the application.
 
