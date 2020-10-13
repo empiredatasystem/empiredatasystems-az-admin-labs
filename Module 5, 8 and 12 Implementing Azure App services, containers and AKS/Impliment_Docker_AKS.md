@@ -45,7 +45,7 @@ In this lab, you will:
 1. Create a resource group in azure using command `az group create --name az104-aks-demo-rg --location eastus`
 
 1. Create an Azure Container Registry using command `az acr create --resource-group az104-aks-demo-rg --name <acrName> --sku Basic`
-1. Login to ACR instance using command az acr login --name <acrName>
+1. Login to ACR instance using command `az acr login --name <acrName>`
 
 1. Now to see the docker image created in previous task run command `docker images`
 1. To upload the local docker image to ACR you need login server address of ACR. To get the login server address, use the command `az acr list --resource-group az104-aks-demo-rg --query "[].{acrLoginServer:loginServer}" --output table`
