@@ -69,7 +69,7 @@ In this lab, you will:
 #### Task 4: Run your containerized application on AKS
 
 1. Get the ACR login server name using command `az acr list --resource-group az104-aks-demo-rg --query "[].{acrLoginServer:loginServer}" --output table`
-1. Oped the file `azure-vote-all-in-one-redis.yaml` in a code editor such Visual Studio Code or notepad.
+1. Oped the file `azure-vote.yaml` in a code editor such Visual Studio Code or notepad.
 1. Replace microsoft with your ACR login server name.
 
 ```yaml
