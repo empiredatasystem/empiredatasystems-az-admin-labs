@@ -29,8 +29,8 @@
 
 ## Module 5 Planning and implementing storage, backup, and recovery services
 
-- Lab 1 : [Manage Azure storage](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%20Planning%20and%20implementing%20storage%2C%20backup%2C%20and%20recovery%20services/Implement_Data_Protection.md)
-- Lab 2 : [Implement Data Protection](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%20Planning%20and%20implementing%20storage%2C%20backup%2C%20and%20recovery%20services/Manage_Azure_Storage.md)
+- Lab 1 : [Manage Azure storage](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%20Planning%20and%20implementing%20storage%2C%20backup%2C%20and%20recovery%20services/Manage_Azure_Storage.md)
+- Lab 2 : [Implement Data Protection](https://github.com/ashishrajsrivastava/empiredatasystems-az-admin-labs/blob/master/Module%205%20Planning%20and%20implementing%20storage%2C%20backup%2C%20and%20recovery%20services/Implement_Data_Protection.md)
 
 ## Module 6 Automation, Planning and implementing Azure SQL Database
 
