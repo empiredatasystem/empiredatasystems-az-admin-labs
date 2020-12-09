@@ -10,6 +10,7 @@ lab:
 **Pre-requisites:** Make sure you have AZ-CLI and Docker Desktop is installed on your computer.
 1. [Install Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 2. [Install Docker Desktop](https://docs.docker.com/docker-for-windows/install/)
+3. [Install Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 ## Lab scenario
 
 You need to containerized an existing web application. You need to run it locally and then push it to a container registry such as ACR. You will pull this application image from ACR and then deploy to Azure Kubernetes Cluster in Azure.
