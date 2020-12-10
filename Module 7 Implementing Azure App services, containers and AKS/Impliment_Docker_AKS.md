@@ -50,7 +50,7 @@ In this lab, you will:
 
 1. Now to see the docker image created in previous task run command `docker images`
 1. To upload the local docker image to ACR you need login server address of ACR. To get the login server address, use the command `az acr list --resource-group az104-aks-demo-rg --query "[].{acrLoginServer:loginServer}" --output table`
-1. Now tag your local azure-vote-front image with acrLoginServer address of the container registry using command `az acr list --resource-group az104-aks-demo-rg --query "[].{acrLoginServer:loginServer}" --output table`
+1. Now tag your local azure-vote-front image with acrLoginServer address of the container registry using command `docker tag azure-vote-front <acrLoginServer>/azure-vote-front:v1`
 1. To verify the tags run command `$ docker images`
 1. Now push the docker image to ACR instance using command `docker push <acrLoginServer>/azure-vote-front:v1`
 1. It will take sometime to push the image. Once image is pushed, run command `az acr repository list --name <acrName> --output table` to list the images in the ACR instance.
@@ -84,7 +84,7 @@ containers:
 - name: azure-vote-front
   image: <acrName>.azurecr.io/azure-vote-front:v1
 ```
-1. After making changes run command `kubectl apply -f azure-vote-all-in-one-redis.yaml` to deploy the application to AKS
+1. After making changes run command `kubectl apply -f azure-vote.yml` to deploy the application to AKS
 
 1. To monitor the progress, run command ` kubectl get service azure-vote-front --watch`
 1. Initially the EXTERNAL-IP for th eazure-vote-front service is pending.
